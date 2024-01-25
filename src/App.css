@@ -1,0 +1,36 @@
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    text-align: left;
+    padding: 18px;
+  }
+
+
+  #diskE::-webkit-meter-optimum-value {
+    background: rgb(75, 33, 230); 
+    border-radius: 10px;
+  }
+  
+  #diskA::-webkit-meter-optimum-value {
+    background: rgb(64, 133, 212); 
+    border-radius: 10px;
+  }
+
+  #diskB::-webkit-meter-optimum-value {
+    background: rgb(221, 101, 20); 
+    border-radius: 10px;
+  }
+  #diskC::-webkit-meter-optimum-value {
+    background: rgb(89, 114, 253); 
+    border-radius: 10px;
+  }
+
+  #diskD::-webkit-meter-optimum-value {
+    background: rgb(231, 6, 44); 
+    border-radius: 10px;
+  }

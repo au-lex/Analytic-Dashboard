@@ -1,0 +1,63 @@
+import React from 'react';
+import { initializeApp } from 'firebase/app';
+import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyDwfOvX1oAMnLEQwTkS7lnjGBEWcwm5Jyo",
+    authDomain: "carwash-auth-7f9b1.firebaseapp.com",
+    projectId: "carwash-auth-7f9b1",
+    storageBucket: "carwash-auth-7f9b1.appspot.com",
+    messagingSenderId: "874000893983",
+    appId: "1:874000893983:web:3c93e6ff2d18c4722c2d2a"
+  };
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
+
+// Function to sign up with Google
+const signUpWithGoogle = () => {
+  signInWithPopup(auth, provider)
+    .then((result) => {
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+      const user = result.user;
+      console.log(user);
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      const email = error.email;
+      const credential = GoogleAuthProvider.credentialFromError(error);
+      console.error(errorCode, errorMessage, email, credential);
+    });
+};
+
+const GoogleSignUpButton = () => {
+  const handleGoogleSignUp = () => {
+    signUpWithGoogle();
+  };
+
+  return (
+    <button onClick={handleGoogleSignUp}>
+      Sign Up with Google
+    </button>
+  );
+};
+
+const YourMainComponent = () => {
+  // Your main component logic here
+
+  return (
+    <div>
+      <h1>Your App</h1>
+      {/* Other components and content */}
+      <GoogleSignUpButton />
+      {/* Other components and content */}
+    </div>
+  );
+};
+
+export default YourMainComponent;
