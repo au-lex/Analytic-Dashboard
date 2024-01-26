@@ -34,3 +34,8 @@ table {
     background: rgb(231, 6, 44); 
     border-radius: 10px;
   }
+
+  .chart-container {
+    position: relative;
+    height: 20rem;
+  }
