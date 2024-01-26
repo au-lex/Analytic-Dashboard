@@ -9,7 +9,7 @@ import group from '../assets/Group.png'
 import icc from '../assets/icon (2).png'
 import trd from '../assets/trending-up.png'
 import box from '../assets/box.png'
-import icon from '../assets/icon.png'
+
 import dis from '../assets/discount-shape.png'
 import info from '../assets/info-circle.png'
 import sun from '../assets/sun.png'
@@ -170,10 +170,10 @@ const Header = ({ chartData }) => {
     <div className="no w-[100%] flex justify-between px-[1rem] pt-3   h-[3rem]  rounded-full  py-2">
     <div className=" w-[2rem] h-[2rem]
      border-slate-200 shadow-sm   pt-2  rounded-full">
-    <img src={icon} alt="" />
+    <img src='https://res.cloudinary.com/durbee4ln/image/upload/v1706288951/Icon_2_ycvlsv.png' alt="" />
 </div>
        
-          <img src={sig} alt="" />
+          <img src='https://res.cloudinary.com/durbee4ln/image/upload/v1706288952/Group_3_h5xn3s.png' alt="" />
  </div>
  <section className="ord pt-2 px-4">
 
@@ -203,7 +203,8 @@ const Header = ({ chartData }) => {
 <div className="no w-[100%] flex justify-between px-[1rem] pt-3   h-[3rem]  rounded-full  py-2">
 <div className=" w-[2rem] h-[2rem]
  border-slate-200 shadow-sm   pt-2  rounded-full">
-<img src={icc} alt="" />
+  <img src='https://res.cloudinary.com/durbee4ln/image/upload/v1706288951/Icon_2_ycvlsv.png' alt="" />
+{/* <img src={ic} alt="" /> */}
 </div>
    
       <img src={vect} alt="" />
@@ -236,7 +237,7 @@ const Header = ({ chartData }) => {
 <div className="no w-[100%] flex justify-between px-[1rem] pt-3   h-[3rem]  rounded-full  py-2">
 <div className=" w-[2rem] h-[2rem]
  border-slate-200 shadow-sm   pt-2  rounded-full">
-<img src={icon} alt="" />
+<img src='https://res.cloudinary.com/durbee4ln/image/upload/v1706288951/Icon_2_ycvlsv.png' alt="" />
 </div>
    
       <img src={vect} alt="" />
@@ -269,10 +270,10 @@ const Header = ({ chartData }) => {
     <div className="no w-[100%] flex justify-between px-[1rem] pt-3   h-[3rem]  rounded-full  py-2">
     <div className=" w-[2rem] h-[2rem]
      border-slate-200 shadow-sm   pt-2  rounded-full">
-    <img src={icc} alt="" />
+    <img src='https://res.cloudinary.com/durbee4ln/image/upload/v1706288951/Icon_2_ycvlsv.png' alt="" />
 </div>
        
-          <img src={sig} alt="" />
+          <img src='https://res.cloudinary.com/durbee4ln/image/upload/v1706288952/Group_3_h5xn3s.png' alt="" />
  </div>
  <section className="ord pt-2 px-4">
 
