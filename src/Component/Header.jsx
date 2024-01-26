@@ -22,7 +22,8 @@ import { GoBell } from "react-icons/go";
 import { IoCalendarOutline } from "react-icons/io5";
 import { CiSearch } from "react-icons/ci";
 import { CiFileOn } from "react-icons/ci";
-const Header = () => {
+import Chart from './Chart1'
+const Header = ({ chartData }) => {
   return (
     <>
     <div className='flexl'>
@@ -33,16 +34,18 @@ const Header = () => {
     <section className='shadow-sm  w-[100%] h-[11vh]  z-40 bg-white fixed px-[1rem] border-b border-gray-200 py-4'>
     
   <nav className='flex justify-between space-x-4'>
-    <div className='w-full'>
-
-    <h2 className='font-semibold text-[1.5rem] ml-[4rem]'>Dashboard</h2>
+    <div className='w-full flex'>
+    <div className="logo mb-4 mr-2 lg:hidden">
+        <img src={logo} alt="" />
+      </div>
+    <h2 className='font-semibold text-[1.5rem] lg:ml-[4rem]'>Dashboard</h2>
     </div>
-  <section className="inputCon  w-[50%] relative  ">
+  <section className="inputCon  w-[50%] relative hidden  ">
     <span className='absolute top-[.5rem] left-3'><CiSearch /></span>
             <input type="text" placeholder='Search...' className='  w-[100%] px-8  shadow-sm border   py-[4px] rounded-full' />
         </section>
 
-        <div className="notif w-[50%] flex justify-between px-[2rem]   h-[3rem]  rounded-full  py-2">
+        <div className="notif lg:w-[40%] w-full hidden    lg:flex justify-between px-[2rem]   h-[3rem]  rounded-full  py-2">
           <span className="cal flex space-x-2 ">
             <span className='pt-1'>
 
@@ -54,7 +57,7 @@ const Header = () => {
 <GoBell />
 </div>
         </div>
-        <div className="profile flex  justify-between w-[40%] shadow-sm border  h-[3rem] rounded-full">
+        <div className="profile flex  justify-between lg:w-[40%] w-full shadow-sm border  h-[3rem] rounded-full">
         <div className="logo pl-2 pt-1">
         <img src={profile} alt="profile" />
       </div>
@@ -76,7 +79,7 @@ const Header = () => {
 {/* herro */}
     <section className="hero flex">
 
-   <section className="sidbar p-4 w-[5%] mr-[1rem]  z-50 fixed h-[100vh] border-r bg-slate-50 border-gray-200">
+   <section className="sidbar p-4 w-[5%] mr-[1rem] hidden  z-50 fixed h-[100vh] border-r bg-slate-50 border-gray-200">
       <div className="logo mb-4">
         <img src={logo} alt="" />
       </div>
@@ -130,13 +133,13 @@ const Header = () => {
 
     </section> 
  
-    <main  className='pt-[5rem] ml-[5rem]'>
+    <main  className='pt-[5rem] lg:ml-[5rem]'>
        
       
-       <div className='dash-Container flex  w-full justify-between space-x-6 mb-[2rem]'>
+       <div className='dash-Container flex  lg:flex-nowrap flex-wrap w-full justify-between space-x-6 mb-[1rem]'>
 
-        <div className="sales border shadow-sm  w-[60%] rounded-[10px] h-[52vh] mt-2">
-<section className="desc flex justify-between px-[1rem] pt-4">
+        <div className="sales border shadow-sm w-full lg:w-[60%] rounded-[10px] h-[52vh] mt-2">
+<section className="desc flex justify-between px-[1rem] pt-1">
   <h1 className='capitalize  font-semibold'>sales trend</h1>
   <span className='flex '>
     <h2 className='mr-2'>Shotby:</h2>
@@ -151,11 +154,18 @@ const Header = () => {
       <FaChevronDown className='text-slate-600 text-[12px]'  />
       </div>
         </div>
-  </span>
+  </span> 
 </section>
+
+<div className='  w-full flex px-[1rem] justify-center'>
+
+<Chart chartData={chartData} />
+</div>
         </div>
-        <div className="sales flex flex-wrap rounded-[10px] items-center w-[50%] h-[50vh]">
-    <div className="total-order w-[47%] border shadow-sm h-[25vh] m-2 rounded-[10px]">
+{/* order summary */}
+
+        <div className="sales flex flex-wrap rounded-[10px] items-center  pt-[2rem]  lg:w-[50%] w-full lg:h-[50vh]">
+    <div className="total-order lg:w-[47%] w-[45%] border shadow-sm h-[25vh] m-2 rounded-[10px]">
 
     <div className="no w-[100%] flex justify-between px-[1rem] pt-3   h-[3rem]  rounded-full  py-2">
     <div className=" w-[2rem] h-[2rem]
@@ -188,7 +198,7 @@ const Header = () => {
 </section>
     </div>
 
-    <div className="total-order w-[47%] border shadow-sm h-[25vh] m-2 rounded-[10px]">
+    <div className="total-order lg:w-[47%]  w-[45%] border shadow-sm h-[25vh] m-2 rounded-[10px]">
 
 <div className="no w-[100%] flex justify-between px-[1rem] pt-3   h-[3rem]  rounded-full  py-2">
 <div className=" w-[2rem] h-[2rem]
@@ -221,7 +231,7 @@ const Header = () => {
 </section>
 </div>
 
-<div className="total-order w-[47%] border shadow-sm h-[25vh] m-2 rounded-[10px]">
+<div className="total-order lg:w-[47%]  w-[45%] border shadow-sm h-[25vh] m-2 rounded-[10px]">
 
 <div className="no w-[100%] flex justify-between px-[1rem] pt-3   h-[3rem]  rounded-full  py-2">
 <div className=" w-[2rem] h-[2rem]
@@ -254,7 +264,7 @@ const Header = () => {
 </section>
 </div>
 
-<div className="total-order w-[47%] border shadow-sm h-[25vh] m-2 rounded-[10px]">
+<div className="total-order lg:w-[47%]  w-[45%] border shadow-sm h-[25vh] m-2 rounded-[10px]">
 
     <div className="no w-[100%] flex justify-between px-[1rem] pt-3   h-[3rem]  rounded-full  py-2">
     <div className=" w-[2rem] h-[2rem]
@@ -293,9 +303,9 @@ const Header = () => {
 
 
         
-       <div className='dash-Container flex  w-full justify-between space-x-6 mb-[2rem]'>
+       <div className='dash-Container flex-wrap flex  w-full justify-between lg:space-x-6 mb-[2rem]'>
 
-        <div className="sales border shadow-sm  w-[60%] rounded-[10px] h-[70vh] mt-2">
+        <div className="sales border shadow-sm  b-red-500 lg:w-[60%] w-full  rounded-[10px] lg:h-[70vh] mt-2">
 <section className="desc flex justify-between px-[1.5rem] pt-4">
   <h1 className='capitalize  font-semibold'>last orders</h1>
   <span className='flex '>
@@ -409,8 +419,8 @@ const Header = () => {
 
 </div>
         </div>
-        <div className="sales flex flex-wrap rounded-[10px]  items-center w-[50%] h-[50vh]">
-    <div className="total-order w-[100%] border shadow-sm px-[1rem] h-[70vh] mt-2  rounded-[10px]">
+        <div className="sales flex flex-wrap  rounded-[10px] mt-[2rem]  items-center lg:w-[50%] w-full h-[50vh]">
+    <div className="total-order w-[100%] border shadow-sm px-[1rem] lg:h-[70vh] mt-2  rounded-[10px]">
 
     <section className="desc flex justify-between  pt-4 mb-4">
   <h1 className='capitalize  font-semibold'>TopPlatform </h1>
