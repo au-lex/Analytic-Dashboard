@@ -5,7 +5,7 @@ import sig from '../assets/Group 3.png'
 import vect from '../assets/Vector 2.png'
 import prof from '../assets/profile-2user.png'
 import group from '../assets/Group.png'
-import ic from '../assets/icon-1.png'
+// import ic from '../assets/icon-1.png'
 import icc from '../assets/icon (2).png'
 import trd from '../assets/trending-up.png'
 import box from '../assets/box.png'
@@ -203,7 +203,8 @@ const Header = ({ chartData }) => {
 <div className="no w-[100%] flex justify-between px-[1rem] pt-3   h-[3rem]  rounded-full  py-2">
 <div className=" w-[2rem] h-[2rem]
  border-slate-200 shadow-sm   pt-2  rounded-full">
-<img src={ic} alt="" />
+  <img src={icc} alt="" />
+{/* <img src={ic} alt="" /> */}
 </div>
    
       <img src={vect} alt="" />
