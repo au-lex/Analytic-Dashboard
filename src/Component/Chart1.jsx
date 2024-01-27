@@ -4,7 +4,7 @@ import { Bar } from 'react-chartjs-2';
 
 const BarChart = ({ chartData }) => {
   return (
-    <div className="chart-container w-full">
+    <div className="chart-container h-[40rem] w-full">
      
       <Bar
         data={chartData}

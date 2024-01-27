@@ -39,7 +39,10 @@ function App() {
 
   return (
     <>
-    <Header chartData={chartData} />
+    <div className=''>
+
+    <Header  chartData={chartData} />
+    </div>
 
 {/* 
     <Chart1 chartData={chartData} /> */}
