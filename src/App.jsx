@@ -1,59 +1,81 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { CategoryScale } from 'chart.js';
-import {Chart } from 'chart.js/auto'
-import './App.css'
-import Header from './Component/Header'
-import Chart1 from './Component/Chart1'
+import { Chart } from 'chart.js/auto';
+import './App.css';
+import Header from './Component/Header';
 
-Chart.register( CategoryScale )
+Chart.register(CategoryScale);
 
 function App() {
-  
+  const [loading, setLoading] = useState(true);
   const [chartData, setChartData] = useState({
     labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
     datasets: [
       {
         label: 'Users Gained',
-        data: [8000, 19000, 6000, 20000, 7000, 46000, 40000, 28000, 40000, 4000, 30000, 20000],
+        data: [8000, 19000, 6000, 20000, 7000, 48000, 33000, 28000, 30000, 4000, 30000, 20000],
         backgroundColor: [
-          'rgba(75,192,192,1)',
-          'rgba(255, 159, 64, 1)',
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 103, 235, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(201, 203, 207, 1)',
-          'rgba(255, 20, 100, 1)',
-          'rgba(255, 180, 0, 1)',
-          'rgba(100, 200, 255, 1)',
-          'rgba(100, 100, 255, 1)'
+          'rgba(144,238,144,0.7)', 
+          'rgba(144,238,144,0.5)',
+          'rgba(144,238,144,0.3)',
+          'rgba(144,238,144,0.7)',
+          'rgba(144,238,144,0.5)',
+          'rgba(144,238,144,0.3)',
+          'rgba(144,238,144,0.7)',
+          'rgba(144,238,144,0.5)',
+          'rgba(144,238,144,0.3)',
+          'rgba(144,238,144,0.7)',
+          'rgba(144,238,144,0.5)',
+          'rgba(144,238,144,0.3)',
         ],
         borderColor: 'white',
         borderWidth: 2,
         borderRadius: 20,
-      }
-    ]
+      },
+    ],
   });
+
+  useEffect(() => {
+   
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000); 
+  }, []);
+
+
+  const gradient = document.createElement('canvas').getContext('2d');
+  const gradientFill = gradient.createLinearGradient(0, 0, 0, 400);
+  gradientFill.addColorStop(0, 'rgba(144,238,144,0.7)');
+  gradientFill.addColorStop(1, 'rgba(144,238,144,0)');
+  chartData.datasets[0].backgroundColor = gradientFill;
 
   return (
     <>
-    <div className=''>
+      {loading ? (
+       
+        <div className="loader justify-center flex h-[100vh] items-center">
 
-    <Header  chartData={chartData} />
-    </div>
 
-{/* 
-    <Chart1 chartData={chartData} /> */}
+<div class="dot-spinner">
+    <div class="dot-spinner__dot"></div>
+    <div class="dot-spinner__dot"></div>
+    <div class="dot-spinner__dot"></div>
+    <div class="dot-spinner__dot"></div>
+    <div class="dot-spinner__dot"></div>
+    <div class="dot-spinner__dot"></div>
+    <div class="dot-spinner__dot"></div>
+    <div class="dot-spinner__dot"></div>
+</div>
+        </div>
+      ) : (
+       
+        <div className=''>
+          <Header chartData={chartData} />
+        </div>
+      )}
     </>
-  )
+  );
 }
 
-export default App
-
-
-
-
-
-
+export default App;
