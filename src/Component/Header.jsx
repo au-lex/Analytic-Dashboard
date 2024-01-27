@@ -1,12 +1,11 @@
 import React from 'react'
 import logo from '../assets/logo.png'
 import dash from '../assets/dash.png'
-import sig from '../assets/Group 3.png'
-import vect from '../assets/Vector 2.png'
+
+
 import prof from '../assets/profile-2user.png'
 import group from '../assets/Group.png'
-// import ic from '../assets/icon-1.png'
-import icc from '../assets/icon (2).png'
+
 import trd from '../assets/trending-up.png'
 import box from '../assets/box.png'
 
@@ -207,7 +206,7 @@ const Header = ({ chartData }) => {
 {/* <img src={ic} alt="" /> */}
 </div>
    
-      <img src={vect} alt="" />
+      <img src='https://res.cloudinary.com/durbee4ln/image/upload/v1706288951/Vector_2_djr6r9.png' alt="" />
 </div>
 <section className="ord pt-2 px-4">
 
@@ -240,7 +239,7 @@ const Header = ({ chartData }) => {
 <img src='https://res.cloudinary.com/durbee4ln/image/upload/v1706288951/Icon_2_ycvlsv.png' alt="" />
 </div>
    
-      <img src={vect} alt="" />
+      <img src='https://res.cloudinary.com/durbee4ln/image/upload/v1706288951/Vector_2_djr6r9.png' alt="" />
 </div>
 <section className="ord pt-2 px-4">
 
