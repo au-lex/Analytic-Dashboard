@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react';
 import logo from '../assets/logo.png'
 import dash from '../assets/dash.png'
 
-
+import { FiMenu } from "react-icons/fi";
 import prof from '../assets/profile-2user.png'
 import group from '../assets/Group.png'
 
@@ -21,20 +21,97 @@ import { GoBell } from "react-icons/go";
 import { IoCalendarOutline } from "react-icons/io5";
 import { CiSearch } from "react-icons/ci";
 import { CiFileOn } from "react-icons/ci";
+import { CgMenuRound } from "react-icons/cg";
 import Chart from './Chart1'
 const Header = ({ chartData }) => {
+
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setSidebarOpen(!isSidebarOpen);
+  };
   return (
     <>
-
+  {/* Overlay */}
+  {isSidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black opacity-50 z-40"
+          onClick={toggleSidebar}
+        />
+      )}
     {/* mobile */}
 
 <section className="mobile lg:hidden">
+
+  
+<section
+        className={`sidebar ${isSidebarOpen ? 'block' : 'hidden'} p-4 w-[20%] mr-[1rem] g lg:block z-50 fixed h-[100vh] border-r bg-slate-50 border-gray-200`}
+      >
+       {/* <div className='relative ml-['>
+
+        <button
+          className="absolute top-[10rem]  right-[10rem] text-gray-500"
+          onClick={toggleSidebar}
+          >
+         
+          Close
+        </button>
+
+          </div> */}
+        <div className="logo mb-4">
+          <img src={logo} alt="" />
+        </div>
+
+        <div className="logo mb-6 ">
+          <img src={dash} alt="" />
+        </div>
+
+        <div className="logo mb-6">
+          <img src={prof} alt="" />
+        </div>
+
+        <div className="logo mb-6">
+          <img src={box} alt="" />
+        </div>
+
+        <div className="logo mb-6">
+          <img src={dis} alt="" />
+        </div>
+
+        <div className="logo mb-6">
+          <img src={info} alt="" />
+        </div>
+
+        <div className="logo mb-6">
+          <img src={sun} alt="" />
+        </div>
+
+        <div className="logo mb-6">
+          <img src={moon} alt="" />
+        </div>
+
+        <section className="dwn mt-[6rem]">
+          <div className="logo mb-6">
+            <img src={logout} alt="" />
+          </div>
+
+          <div className="logo mb-6">
+            <img src={dis} alt="" />
+          </div>
+
+          <div className="logo mb-6">
+            <img src={inlog} alt="" />
+          </div>
+        </section>
+      </section>
 
 <div className='flex1 g'>
 
 
 <section className='shadow-sm  w-[100%] h-[11vh]  z-40 bg-white 
  px-[1rem] border-b border-gray-200 py-4'>
+
+
 
 <nav className='flex justify-between  space-x-4'>
 <div className='w-full flex'>
@@ -70,6 +147,10 @@ const Header = ({ chartData }) => {
 
     <div className="notif flex justify-between  pt-4 w-full  h-[3rem]  rounded-full  py-2">
       <span className="cal flex space-x-2 ">
+        <span onClick={toggleSidebar} className='b  '>
+
+      <FiMenu className='text-[1.5rem]' />
+        </span>
         <span className='pt-1'>
 
       <IoCalendarOutline />
@@ -474,21 +555,22 @@ const Header = ({ chartData }) => {
    
 
 
-    <section className='shadow-sm  w-[100%] h-[11vh]  z-40 bg-white fixed px-[1rem] border-b border-gray-200 py-4'>
+    <section className='shadow-sm  w-[100%] h-[11vh]
+      z-40 bg-white fixed px-[1rem] border-b border-gray-200 py-4'>
     
   <nav className='flex justify-between space-x-4'>
     <div className='w-full flex'>
-    <div className="logo mb-4 mr-2 lg:g">
+    <div className="logo mb-4  lg:g">
         <img src={logo} alt="" />
       </div>
-    <h2 className='font-semibold text-[1.5rem] lg:ml-[4rem]'>Dashboard</h2>
+    <h2 className='font-semibold text-[1.5rem] lg:ml-[2rem]'>Dashboard</h2>
     </div>
   <section className="inputCon  w-[50%] relative g  ">
     <span className='absolute top-[.5rem] left-3'><CiSearch /></span>
             <input type="text" placeholder='Search...' className='  w-[100%] px-8  shadow-sm border   py-[4px] rounded-full' />
         </section>
 
-        <div className="notif lg:w-[40%] w-full g    lg:flex justify-between px-[2rem]   h-[3rem]  rounded-full  py-2">
+        <div className="notif lg:w-[45%] w-full g    lg:flex justify-between px-[2rem]   h-[3rem]  rounded-full  py-2">
           <span className="cal flex space-x-2 ">
             <span className='pt-1'>
 
@@ -608,7 +690,8 @@ const Header = ({ chartData }) => {
         </div>
 {/* order summary */}
 
-        <div className="sales flex flex-wrap rounded-[10px] items-center  pt-[2rem]  lg:w-[50%] w-full lg:h-[50vh]">
+        <div className="sales flex flex-wrap rounded-[10px]
+         items-center    lg:w-[50%] w-full lg:h-[50vh]">
     <div className="total-order lg:w-[47%] w-[45%] border shadow-sm h-[25vh] m-2 rounded-[10px]">
 
     <div className="no w-[100%] flex justify-between px-[1rem] pt-3   h-[3rem]  rounded-full  py-2">
@@ -799,7 +882,7 @@ const Header = ({ chartData }) => {
     
     <td  className='text-[14px]'>Nov 15, 2023</td>
     <td className='   text-[14px] font-semibold text-slate-800'>$80,000</td>
-    <td  className='text-[14px]'>Refund</td>
+    <td  className='text-[14px] text-red-500'>Refund</td>
     <td className='flex space-x-1 '>
     <span >
 
@@ -864,7 +947,7 @@ const Header = ({ chartData }) => {
 
 </div>
         </div>
-        <div className="sales flex flex-wrap  rounded-[10px] mt-[2rem]  items-center lg:w-[50%] w-full h-[50vh]">
+        <div className="sales flex flex-wrap  rounded-[10px] mt-[0rem]  items-center lg:w-[50%] w-full h-[50vh]">
     <div className="total-order w-[100%] border shadow-sm px-[1rem] lg:h-[70vh] mt-2  rounded-[10px]">
 
     <section className="desc flex justify-between  pt-4 mb-4">
