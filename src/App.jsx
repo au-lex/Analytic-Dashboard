@@ -3,6 +3,8 @@ import { Bar } from 'react-chartjs-2';
 import { CategoryScale } from 'chart.js';
 import { Chart } from 'chart.js/auto';
 import './App.css';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import Header from './Component/Header';
 
 Chart.register(CategoryScale);
@@ -35,6 +37,15 @@ function App() {
       },
     ],
   });
+
+
+    
+  useEffect(() => {
+    AOS.init({
+      duration: 1000, 
+      once: false, 
+    });
+  }, []); 
 
   useEffect(() => {
    
