@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import logo from '../assets/logo.png'
 import dash from '../assets/dash.png'
-
+import { BsPersonFill, BsGear, BsBoxArrowRight } from 'react-icons/bs';
 import { FiMenu } from "react-icons/fi";
 import prof from '../assets/profile-2user.png'
 import group from '../assets/Group.png'
+import { FaBell } from 'react-icons/fa'
+import { BsThreeDotsVertical } from 'react-icons/bs';
 
 import trd from '../assets/trending-up.png'
 import box from '../assets/box.png'
@@ -24,12 +26,44 @@ import { CiFileOn } from "react-icons/ci";
 import { CgMenuRound } from "react-icons/cg";
 import Chart from './Chart1'
 const Header = ({ chartData }) => {
+  
+const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+  const [selectedDay, setSelectedDay] = useState(null);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  
+   const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
+   const selectDay = (day) => {
+    setSelectedDay(day);
+    setIsDropdownOpen(false);
+  };
+
+
+   const [isNotificationOpen, setIsNotificationOpen] = useState(false);
+
+  const toggleNotification = () => {
+    setIsNotificationOpen(!isNotificationOpen);
+  };
+
+  const closeNotification = () => {
+    setIsNotificationOpen(false);
+  };
 
   const [isSidebarOpen, setSidebarOpen] = useState(false);
 
   const toggleSidebar = () => {
     setSidebarOpen(!isSidebarOpen);
   };
+
+  const [isSidebarOpens, setSidebarOpens] = useState(false);
+
+  const toggleSidebars = () => {
+    setSidebarOpens(!isSidebarOpens);
+  };
+
+  
   return (
     <>
   {/* Overlay */}
@@ -121,7 +155,7 @@ const Header = ({ chartData }) => {
 <h2 className='font-semibold text-[1.3rem] '>Dashboard</h2>
 </div>
 
-    <div className="profile flex  justify-between w-[100%]  shadow-sm border  h-[3rem] rounded-full">
+    <div onClick={toggleSidebars} className="profile flex  justify-between w-[100%]  shadow-sm border  h-[3rem] rounded-full">
     <div className="logo pl-2 pt-1">
     <img src={profile} alt="profile" />
   </div>
@@ -133,6 +167,34 @@ const Header = ({ chartData }) => {
 
   <FaChevronDown  />
   </div>
+  <div className="origin-top-right right-0 mt-2 w-48 absolute top-16 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50">
+ 
+ {isSidebarOpens && (
+   <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+     <a
+       href="#"
+       className="block px-4 py-2 text-sm hover:bg-purple-100 hover:text-purple-900"
+       role="menuitem"
+     >
+       <BsPersonFill className="inline-block mr-2" /> Edit Profile
+     </a>
+     <a
+       href="#"
+       className="block px-4 py-2 text-sm hover:bg-purple-100 hover:text-purple-900"
+       role="menuitem"
+     >
+       <BsGear className="inline-block mr-2" /> Settings
+     </a>
+     <a
+       href="#"
+       className="block px-4 py-2 text-sm text-red-700 hover:bg-red-100 hover:text-red-900"
+       role="menuitem"
+     >
+       <BsBoxArrowRight className="inline-block mr-2" /> Sign out
+     </a>
+   </div>
+ )}
+</div>
     </div> 
 </nav>
 
@@ -158,13 +220,43 @@ const Header = ({ chartData }) => {
       <h2 className='font-semibold'>November 15, 2023</h2>
       </span>
 <div className="bell w-[2rem] h-[2rem] border-slate-200 shadow-sm  pl-2 pt-2 border rounded-full">
-<GoBell />
+<GoBell  onClick={toggleNotification} />
+<div className="relative inline-block text-left">
+    
+
+    {isNotificationOpen && (
+      <div
+        className="origin-top-right absolute top-2 right-0 mt-2 w-64 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50"
+        onBlur={closeNotification}
+      >
+        <div className="py-2" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+          <div className="flex items-center px-4 py-2 border-b">
+            <h3 className="text-lg font-semibold">Notifications</h3>
+          </div>
+          {/* Notification items go here */}
+          <div className="p-4">
+            <div className="mb-4">
+              <p className="text-sm text-gray-700">
+               
+              </p>
+            </div>
+            <div className="mb-4">
+              <p className="text-sm text-gray-700">
+              empty message
+              </p>
+            </div>
+            {/* Add more notification items as needed */}
+          </div>
+        </div>
+      </div>
+    )}
+  </div>
 </div>
     </div>
     </div>
 </div>
 
-<div className="mobileChart px-2 lg:hidden mt-4">
+<div data-aos="fade-up" className="mobileChart px-2 lg:hidden mt-4">
 
 
 
@@ -195,7 +287,7 @@ const Header = ({ chartData }) => {
         </div>
 
         <div className="sales flex flex-wrap rounded-[10px] items-center  pt-[2rem]  lg:w-[50%] w-full lg:h-[50vh]">
-    <div className="total-order lg:w-[47%] w-[45%] border shadow-sm h-[28vh] m-2 rounded-[10px]">
+    <div data-aos="fade-up" className="total-order lg:w-[47%] w-[45%] border shadow-sm h-[28vh] m-2 rounded-[10px]">
 
     <div className="no w-[100%] flex justify-between px-[1rem] pt-3   h-[3rem]  rounded-full  py-2">
     <div className=" w-[2rem] h-[2rem]
@@ -228,7 +320,7 @@ const Header = ({ chartData }) => {
 </section>
     </div>
 
-    <div className="total-order lg:w-[47%]  w-[45%] border shadow-sm h-[28vh] m-2 rounded-[10px]">
+    <div data-aos="fade-up" className="total-order lg:w-[47%]  w-[45%] border shadow-sm h-[28vh] m-2 rounded-[10px]">
 
 <div className="no w-[100%] flex justify-between px-[1rem] pt-3   h-[3rem]  rounded-full  py-2">
 <div className=" w-[2rem] h-[2rem]
@@ -262,7 +354,7 @@ const Header = ({ chartData }) => {
 </section>
 </div>
 
-<div className="total-order lg:w-[47%]  w-[45%] border shadow-sm h-[28vh] m-2 rounded-[10px]">
+<div data-aos="fade-up" className="total-order lg:w-[47%]  w-[45%] border shadow-sm h-[28vh] m-2 rounded-[10px]">
 
 <div className="no w-[100%] flex justify-between px-[1rem] pt-3   h-[3rem]  rounded-full  py-2">
 <div className=" w-[2rem] h-[2rem]
@@ -295,7 +387,7 @@ const Header = ({ chartData }) => {
 </section>
 </div>
 
-<div className="total-order lg:w-[47%]  w-[45%] border shadow-sm h-[28vh] m-2 rounded-[10px]">
+<div data-aos="fade-up" className="total-order lg:w-[47%]  w-[45%] border shadow-sm h-[28vh] m-2 rounded-[10px]">
 
     <div className="no w-[100%] flex justify-between px-[1rem] pt-3   h-[3rem]  rounded-full  py-2">
     <div className=" w-[2rem] h-[2rem]
@@ -337,7 +429,7 @@ const Header = ({ chartData }) => {
   
   <div class="overflow-x-auto  mt-[2rem]">
   <table className = 'min-w-full'>
-  <tr>
+  <tr data-aos="fade-up">
     <th className='text-slate-700  text-[15px]  font-light'>Name</th>
     <th className='text-slate-700 text-[15px]   font-light' >Date</th>
     <th className='text-slate-700 text-[15px]  font-light'>Amount</th>
@@ -361,7 +453,7 @@ const Header = ({ chartData }) => {
     </td>
 
   </tr>
-  <tr>
+  <tr data-aos="fade-up">
   <td className='flex space-x-2'>
   <span className='w-[40px] h-[40px]'><img className='w-full' src={profile} alt="" /></span>
       <h1 className='   font-semibold text-slate-800 text-[15px]'> Jaydon Vaccro</h1>
@@ -378,7 +470,7 @@ const Header = ({ chartData }) => {
       <h1 className='   text-[14px]'>Veiw</h1>
     </td>
   </tr>
-  <tr>
+  <tr data-aos="fade-up">
   <td className='flex space-x-2'>
   <span className='w-[40px] h-[40px]'><img className='w-full' src={profile} alt="" /></span>
       <h1 className='  font-semibold text-slate-800 text-[15px]'>Corey Schleifer</h1>
@@ -395,7 +487,7 @@ const Header = ({ chartData }) => {
       <h1 className='   text-[14px]'>Veiw</h1>
     </td>
   </tr>
-  <tr>
+  <tr data-aos="fade-up">
   <td className='flex space-x-2'>
       <span className='w-[40px] h-[40px]'><img className='w-full' src={profile} alt="" /></span>
       <h1 className='  font-semibold text-slate-800 text-[15px]'> Cooper press</h1>
@@ -412,7 +504,7 @@ const Header = ({ chartData }) => {
       <h1 className='   text-[14px]'>Veiw</h1>
     </td>
   </tr>
-  <tr>
+  <tr data-aos="fade-up">
   <td className='flex space-x-2'>
   <span className='w-[40px] h-[40px]'><img className='w-full' src={profile} alt="" /></span>
       <h1 className='  font-semibold text-slate-800 text-[15px]'> Phlip rubin</h1>
@@ -457,9 +549,9 @@ const Header = ({ chartData }) => {
 
 
 
-<span>
- <label className='block font-semibold' htmlFor="">Book Bazaar</label>
-<meter className='w-full h-[1.5rem]' id="diskE" value="6" min="0" max="10" low="9"></meter>
+<span >
+ <label data-aos="fade-up" className='block font-semibold' htmlFor="">Book Bazaar</label>
+<meter data-aos="fade-up" className='w-full h-[1.5rem]' id="diskE" value="6" min="0" max="10" low="9"></meter>
 <section className="desc flex justify-between pt-2">
   <h1 className='capitalize  '>$2,500 000 </h1>
   <span className='flex '>
@@ -474,8 +566,8 @@ const Header = ({ chartData }) => {
 
 
 <span>
- <label className='block font-semibold' htmlFor="">Artisian Asile</label>
-<meter className='w-full h-[1.5rem] ' id="diskA" value="5" min="0" max="10" low="9"></meter>
+ <label data-aos="fade-up" className='block font-semibold' htmlFor="">Artisian Asile</label>
+<meter data-aos="fade-up" className='w-full h-[1.5rem] ' id="diskA" value="5" min="0" max="10" low="9"></meter>
 <section className="desc flex justify-between pt-2">
   <h1 className='capitalize  '>$1,800 000 </h1>
   <span className='flex '>
@@ -490,8 +582,8 @@ const Header = ({ chartData }) => {
 
 
 <span>
- <label className='block font-semibold' htmlFor="">Toy Troop</label>
-<meter className='w-full h-[1.5rem]' id="diskB" value="4" min="0" max="10" low="9"></meter>
+ <label data-aos="fade-up" className='block font-semibold' htmlFor="">Toy Troop</label>
+<meter data-aos="fade-up" className='w-full h-[1.5rem]' id="diskB" value="4" min="0" max="10" low="9"></meter>
 <section className="desc flex justify-between pt-2">
   <h1 className='capitalize  '>$1,200 000 </h1>
   <span className='flex '>
@@ -506,8 +598,8 @@ const Header = ({ chartData }) => {
 
 
 <span>
- <label className='block font-semibold' htmlFor="">Xstore</label>
-<meter className='w-full h-[1.5rem]' id="diskC" value="3" min="0" max="10" low="9"></meter>
+ <label data-aos="fade-up" className='block font-semibold' htmlFor="">Xstore</label>
+<meter data-aos="fade-up" className='w-full h-[1.5rem]' id="diskC" value="3" min="0" max="10" low="9"></meter>
 <section className="desc flex justify-between pt-2">
   <h1 className='capitalize  '>$1,000 000 </h1>
   <span className='flex '>
@@ -520,9 +612,9 @@ const Header = ({ chartData }) => {
 
 </span>
 
-<span>
- <label className='block font-semibold' htmlFor="">Book Bazaar</label>
-<meter className='w-full h-[1.5rem]' id="diskD" value="2" min="0" max="10" low="9"></meter>
+<span  >
+ <label data-aos="fade-up" className='block font-semibold' htmlFor="">Book Bazaar</label>
+<meter data-aos="fade-up" className='w-full h-[1.5rem]' id="diskD" value="2" min="0" max="10" low="9"></meter>
 <section className="desc flex justify-between pt-2">
   <h1 className='capitalize  '>$800 000 </h1>
   <span className='flex '>
@@ -549,6 +641,7 @@ const Header = ({ chartData }) => {
 {/* desktop */}
     <main className="m hidden lg:block md:hidden">
 
+   
 
     <div className='flex1 g'>
 
@@ -578,11 +671,42 @@ const Header = ({ chartData }) => {
             </span>
           <h2 className='font-semibold'>November 15, 2023</h2>
           </span>
-<div className="bell w-[2rem] h-[2rem] border-slate-200 shadow-sm  pl-2 pt-2 border rounded-full">
-<GoBell />
+<div className="bell w-[2rem] relative h-[2rem] border-slate-200 shadow-sm  pl-2 pt-2 border rounded-full">
+<GoBell  onClick={toggleNotification} />
+
+ <div className="relative inline-block text-left">
+    
+
+      {isNotificationOpen && (
+        <div
+          className="origin-top-right absolute top-2 right-0 mt-2 w-64 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50"
+          onBlur={closeNotification}
+        >
+          <div className="py-2" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+            <div className="flex items-center px-4 py-2 border-b">
+              <h3 className="text-lg font-semibold">Notifications</h3>
+            </div>
+            {/* Notification items go here */}
+            <div className="p-4">
+              <div className="mb-4">
+                <p className="text-sm text-gray-700">
+                 
+                </p>
+              </div>
+              <div className="mb-4">
+                <p className="text-sm text-gray-700">
+                empty message
+                </p>
+              </div>
+              {/* Add more notification items as needed */}
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
 </div>
         </div>
-        <div className="profile flex  justify-between lg:w-[40%] w-full shadow-sm border  h-[3rem] rounded-full">
+        <div onClick={toggleSidebars} className="profile flex   cursor-pointer  justify-between lg:w-[40%] w-full shadow-sm border  h-[3rem] rounded-full">
         <div className="logo pl-2 pt-1">
         <img src={profile} alt="profile" />
       </div>
@@ -594,6 +718,35 @@ const Header = ({ chartData }) => {
 
       <FaChevronDown  />
       </div>
+      <div className="origin-top-right right-0 mt-2 w-48 absolute top-16 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 z-50">
+ 
+  {isSidebarOpens && (
+    <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+      <a
+        href="#"
+        className="block px-4 py-2 text-sm hover:bg-purple-100 hover:text-purple-900"
+        role="menuitem"
+      >
+        <BsPersonFill className="inline-block mr-2" /> Edit Profile
+      </a>
+      <a
+        href="#"
+        className="block px-4 py-2 text-sm hover:bg-purple-100 hover:text-purple-900"
+        role="menuitem"
+      >
+        <BsGear className="inline-block mr-2" /> Settings
+      </a>
+      <a
+        href="#"
+        className="block px-4 py-2 text-sm text-red-700 hover:bg-red-100 hover:text-red-900"
+        role="menuitem"
+      >
+        <BsBoxArrowRight className="inline-block mr-2" /> Sign out
+      </a>
+    </div>
+  )}
+</div>
+
         </div> 
   </nav>
     
@@ -659,7 +812,7 @@ const Header = ({ chartData }) => {
 
     </section> 
  
-    <main  className='     lg pt-[5rem] lg:ml-[5rem]'>
+    <main  data-aos="fade-up"  className='     lg pt-[5rem] lg:ml-[5rem]'>
        
       
        <div className='dash-Container flex  lg:flex-nowrap flex-wrap w-full justify-between space-x-6 mb-[1rem]'>
@@ -669,7 +822,7 @@ const Header = ({ chartData }) => {
   <h1 className='capitalize  font-semibold'>sales trend</h1>
   <span className='flex '>
     <h2 className='mr-2'>Shotby:</h2>
-    <div className=" flex   space-x-4 shadow-sm border  px-2 py-1 w-[60%] rounded-full">
+    <div  onClick={toggleDropdown} className=" flex   space-x-4 shadow-sm border  px-2 py-1 w-[60%] rounded-full">
        
       <div className="">
         <h2 className='text-[12px]  '>Weekly</h2>
@@ -679,6 +832,28 @@ const Header = ({ chartData }) => {
 
       <FaChevronDown className='text-slate-600 text-[12px]'  />
       </div>
+       <div className="relative inline-block text-left">
+      
+
+      {isDropdownOpen && (
+        <div className="origin-top-right absolute right-0 mt-2 w-48 top-6 z-50 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+          <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+            {daysOfWeek.map((day, index) => (
+              <button
+                key={index}
+                onClick={() => selectDay(day)}
+                className={`block px-4 py-2 text-sm ${
+                  selectedDay === day ? 'bg-indigo-500 text-white' : 'text-gray-800 hover:bg-gray-200'
+                }`}
+                role="menuitem"
+              >
+                {day}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
         </div>
   </span> 
 </section>
